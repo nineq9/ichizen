@@ -1,8 +1,8 @@
 name: Deploy ICHIZEN to Pages
 
+# Pages is not enabled for this repository yet.
+# Keep deployment manual-only so normal design commits do not generate failed-run notifications.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
