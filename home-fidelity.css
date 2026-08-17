@@ -116,9 +116,9 @@ html.theme-dark .screen[data-screen="home"] .add-btn{
   height:100%;
 }
 .screen[data-screen="home"] .gauge-track{
-  stroke:var(--gauge-rest);
+  stroke:url(#arcGradient);
   stroke-width:1.15;
-  opacity:.85;
+  opacity:.86;
 }
 .screen[data-screen="home"] .gauge-end{
   opacity:.80;
