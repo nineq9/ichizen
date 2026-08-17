@@ -9,8 +9,8 @@
 <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
 <title>ICHIZEN</title>
 
-<link href="styles.css?v=20260818a" rel="stylesheet"/>
-<link href="home-fidelity.css?v=20260818a" rel="stylesheet"/>
+<link href="styles.css?v=20260818b" rel="stylesheet"/>
+<link href="home-fidelity.css?v=20260818b" rel="stylesheet"/>
 </head>
 <body>
 <div id="app">
@@ -28,7 +28,7 @@
 <button aria-label="徳を積む" class="add-btn" id="addGoodButton" title="徳を積む"></button>
 </div>
 <div class="orb-stage">
-<svg aria-hidden="true" class="gauge" viewbox="0 0 400 400">
+<svg aria-hidden="true" class="gauge" preserveAspectRatio="none" viewbox="0 0 400 400">
 <defs>
 <lineargradient id="arcGradient" x1="0" x2="1" y1="0" y2="0">
 <stop offset="0%" stop-color="#817464"></stop>
@@ -36,9 +36,9 @@
 <stop offset="100%" stop-color="#ddcbb0"></stop>
 </lineargradient>
 </defs>
-<circle class="gauge-track" cx="200" cy="205" pathlength="100" r="168"></circle>
-<circle class="gauge-end" cx="81.2" cy="323.8" r="3.2"></circle>
-<circle class="gauge-end" cx="318.8" cy="323.8" r="3.2"></circle>
+<circle class="gauge-track" cx="200" cy="205" pathlength="100" r="190"></circle>
+<circle class="gauge-end" cx="27.8" cy="285.3" r="3.2"></circle>
+<circle class="gauge-end" cx="372.2" cy="285.3" r="3.2"></circle>
 <circle class="gauge-dot-ring" cx="100" cy="100" id="gaugeDotRing" r="8"></circle>
 <circle class="gauge-dot" cx="100" cy="100" id="gaugeDot" r="4.1"></circle>
 </svg>
@@ -120,6 +120,7 @@
 </div>
 <div class="toast" id="toast"></div>
 </div>
-<script src="app.js?v=20260818a"></script>
+<script src="app.js?v=20260818b"></script>
+<script src="gauge-fix.js?v=20260818b"></script>
 </body>
 </html>
