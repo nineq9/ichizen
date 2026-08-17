@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" name="viewport"/>
+<meta content="#f4f0ea" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="default" name="apple-mobile-web-app-status-bar-style"/>
+<title>ICHIZEN</title>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="app">
+<section class="screen active" data-screen="home" id="homeScreen">
+<header class="topbar">
+<div aria-label="ICHIZEN" class="brand">ICHIZEN</div>
+<button aria-label="メニュー" class="icon-btn" id="menuButton" title="メニュー"><svg viewbox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"></path></svg></button>
+</header>
+<main class="home-main">
+<div class="balance-label">現在の徳</div>
+<div class="balance-row"><div class="balance" id="balanceNumber">127</div><button aria-label="徳を積む" class="add-btn" id="addGoodButton" title="徳を積む"></button></div>
+<div class="orb-stage">
+<svg aria-hidden="true" class="gauge" viewbox="0 0 400 400"><defs><lineargradient id="arcGradient" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stop-color="#817464"></stop><stop offset="54%" stop-color="#b8a68f"></stop><stop offset="100%" stop-color="#ddcbb0"></stop></lineargradient></defs><circle class="gauge-track" cx="200" cy="205" pathlength="100" r="168"></circle><circle class="gauge-end" cx="81.2" cy="323.8" r="3.2"></circle><circle class="gauge-end" cx="318.8" cy="323.8" r="3.2"></circle><circle class="gauge-dot-ring" cx="100" cy="100" id="gaugeDotRing" r="8"></circle><circle class="gauge-dot" cx="100" cy="100" id="gaugeDot" r="4.1"></circle></svg>
+<button aria-label="授かったものを記録" class="orb-button" id="spendButton" title="授かったものを記録"><span class="orb-glow" id="orbGlow"></span><span aria-hidden="true" class="orb-image"></span><span aria-hidden="true" class="tap-hint"></span></button>
+</div>
+</main>
+</section>
+<section class="screen" data-screen="history" id="historyScreen"><div class="simple-header"><div class="screen-title">履歴</div></div><div class="list" id="historyList"></div></section>
+<section class="screen" data-screen="received" id="receivedScreen"><div class="simple-header"><div class="screen-title">もらったもの</div></div><div class="list" id="receivedList"></div></section>
+<section class="screen" data-screen="reflect" id="reflectScreen"><div class="simple-header"><div class="screen-title">振り返り</div></div><div class="stats"><div class="stat"><div class="stat-value" id="totalGood">0</div><div class="stat-label">積んだ</div></div><div class="stat"><div class="stat-value" id="totalGift">0</div><div class="stat-label">授かった</div></div></div><div class="memory-card" id="memoryCard"></div></section>
+<section class="screen" data-screen="profile" id="profileScreen"><div class="simple-header"><div class="screen-title">設定</div></div><div class="profile-row"><span>表示</span><div class="segmented" id="themeSegmented"><button aria-label="ライト" data-theme="light"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path></svg></button><button aria-label="自動" data-theme="auto"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 4v16M12 4a8 8 0 0 1 0 16"></path></svg></button><button aria-label="ダーク" data-theme="dark"><svg viewbox="0 0 24 24"><path d="M20 15.2A8.5 8.5 0 1 1 8.8 4a7 7 0 0 0 11.2 11.2Z"></path></svg></button></div></div></section>
+<nav aria-label="メインナビゲーション" class="bottom-nav"><button aria-label="ホーム" class="nav-btn active" data-target="home" title="ホーム"><svg data-fill="true" viewbox="0 0 24 24"><path d="M3.5 10.5 12 3l8.5 7.5V21h-6v-6h-5v6h-6z"></path></svg></button><button aria-label="履歴" class="nav-btn" data-target="history" title="履歴"><svg viewbox="0 0 24 24"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></button><button aria-label="もらったもの" class="nav-btn" data-target="received" title="もらったもの"><svg viewbox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"></path></svg></button><button aria-label="振り返り" class="nav-btn" data-target="reflect" title="振り返り"><svg viewbox="0 0 24 24"><path d="M12 4a8 8 0 1 0 7.4 5M12 7v5l3 2"></path><path d="M16 3h5v5"></path></svg></button><button aria-label="マイページ" class="nav-btn" data-target="profile" title="マイページ"><svg viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path></svg></button></nav>
+<div class="menu-pop" id="menuPop" role="menu"><button class="menu-action" id="menuAddGood"><svg viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><span>積む</span></button><button class="menu-action" id="menuAddGift"><svg viewbox="0 0 24 24"><path d="M12 3v18M3 12h18"></path><path d="M5 5l14 14M19 5 5 19" opacity=".35"></path></svg><span>授かる</span></button></div>
+<div aria-hidden="true" class="modal-wrap" id="entryModal"><div class="sheet"><div class="grabber"></div><div class="sheet-top"><div class="sheet-title" id="entryTitle">記録</div><button aria-label="閉じる" class="close-btn" data-close="entryModal"><svg viewbox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div><div class="prompt" id="entryPrompt"></div><textarea id="entryText" maxlength="240" placeholder=""></textarea><textarea class="sub-field" id="entryWhy" maxlength="240" placeholder="どこが嬉しかった？（任意）" style="display:none"></textarea><button class="primary" id="judgeButton">判定する</button></div></div>
+<div aria-hidden="true" class="modal-wrap" id="resultModal"><div class="sheet"><div class="grabber"></div><div class="sheet-top"><div class="sheet-title">判定</div><button aria-label="閉じる" class="close-btn" data-close="resultModal"><svg viewbox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div><div class="result-score serif-accent" id="resultScore">+3</div><div class="reason" id="resultReason"></div><div class="soft-note" id="resultSoft"></div><button class="primary" id="saveButton">記録する</button></div></div>
+<div class="toast" id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
