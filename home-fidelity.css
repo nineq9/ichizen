@@ -126,6 +126,9 @@ html.theme-dark .screen[data-screen="home"] .add-btn{
 .screen[data-screen="home"] .gauge-dot-ring{
   stroke-width:3.15;
 }
+.screen[data-screen="home"] .gauge-dot{
+  r:4;
+}
 .screen[data-screen="home"] .orb-button{
   position:absolute;
   z-index:3;
@@ -153,17 +156,6 @@ html.theme-dark .screen[data-screen="home"] .add-btn{
   background-repeat:no-repeat;
   border-radius:0;
   filter:none;
-  -webkit-mask-image:
-    radial-gradient(ellipse 43% 42% at 50% 37%,#000 0 90%,transparent 100%),
-    radial-gradient(ellipse 49% 23% at 50% 78%,#000 0 89%,transparent 100%),
-    radial-gradient(ellipse 49% 10% at 48% 91%,rgba(0,0,0,.48) 0 62%,transparent 100%);
-  -webkit-mask-repeat:no-repeat;
-  -webkit-mask-composite:source-over;
-  mask-image:
-    radial-gradient(ellipse 43% 42% at 50% 37%,#000 0 90%,transparent 100%),
-    radial-gradient(ellipse 49% 23% at 50% 78%,#000 0 89%,transparent 100%),
-    radial-gradient(ellipse 49% 10% at 48% 91%,rgba(0,0,0,.48) 0 62%,transparent 100%);
-  mask-repeat:no-repeat;
 }
 .screen[data-screen="home"] .orb-glow{
   left:50%;
@@ -200,6 +192,7 @@ html.theme-dark .screen[data-screen="home"] .add-btn{
   height:4px;
 }
 
+/* Keep the menu icon-led. */
 .menu-pop{width:126px;padding:8px}
 .menu-pop.open{display:grid;grid-template-columns:1fr 1fr;gap:4px}
 .menu-action{
