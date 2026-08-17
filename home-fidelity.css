@@ -1,0 +1,221 @@
+/* ICHIZEN approved-home fidelity pass
+   Reference: approved light/dark demo. Keep this file focused on the home composition. */
+:root{
+  --bg:#f6f2ec;
+  --gauge-rest:#d8c9b6;
+  --nav-fidelity:rgba(251,249,246,.62);
+}
+html.theme-dark{
+  --bg:#2d2c2a;
+  --gauge-rest:#927f68;
+  --nav-fidelity:rgba(58,56,52,.58);
+}
+html,body,#app{background-color:var(--bg)}
+#app{
+  min-height:100dvh;
+  background:
+    radial-gradient(circle at 50% 57%,rgba(var(--glow-color),.024),transparent 42%),
+    var(--bg);
+}
+.screen[data-screen="home"]{
+  position:relative;
+  height:100dvh;
+  min-height:100dvh;
+  padding:0;
+  overflow:hidden;
+}
+.screen[data-screen="home"] .topbar{
+  position:absolute;
+  z-index:20;
+  top:max(17px,env(safe-area-inset-top));
+  left:26px;
+  right:26px;
+  height:52px;
+}
+.screen[data-screen="home"] .brand{
+  font-size:21px;
+  letter-spacing:.30em;
+  font-weight:400;
+}
+.screen[data-screen="home"] .icon-btn{
+  width:46px;
+  height:46px;
+  background:rgba(255,255,255,.34);
+  border-color:rgba(255,255,255,.10);
+  box-shadow:0 5px 16px rgba(50,45,39,.04);
+}
+html.theme-dark .screen[data-screen="home"] .icon-btn{
+  background:rgba(255,255,255,.055);
+}
+.screen[data-screen="home"] .home-main{
+  position:absolute;
+  inset:0;
+  padding:0;
+  margin:0;
+}
+.screen[data-screen="home"] .balance-label{
+  position:absolute;
+  top:25.2%;
+  left:50%;
+  transform:translateX(-50%);
+  margin:0;
+  font-size:15px;
+  font-weight:500;
+  white-space:nowrap;
+}
+.screen[data-screen="home"] .balance-row{
+  position:absolute;
+  top:29.1%;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:17px;
+  min-height:62px;
+}
+.screen[data-screen="home"] .balance{
+  font-size:clamp(58px,15.4vw,70px);
+  font-weight:300;
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+.screen[data-screen="home"] .add-btn{
+  width:48px;
+  height:48px;
+  background:rgba(255,255,255,.46);
+  box-shadow:0 8px 22px rgba(72,61,49,.055);
+}
+html.theme-dark .screen[data-screen="home"] .add-btn{
+  background:rgba(255,255,255,.07);
+  box-shadow:none;
+}
+.screen[data-screen="home"] .add-btn:before,
+.screen[data-screen="home"] .add-btn:after{
+  width:19px;
+  height:1.35px;
+}
+
+.screen[data-screen="home"] .orb-stage{
+  position:absolute;
+  z-index:2;
+  top:38.4%;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(91.5%,390px);
+  height:min(46.5dvh,390px);
+  max-width:none;
+  aspect-ratio:auto;
+  margin:0;
+  display:block;
+}
+.screen[data-screen="home"] .gauge{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.screen[data-screen="home"] .gauge-track{
+  stroke:var(--gauge-rest);
+  stroke-width:1.15;
+  opacity:.85;
+}
+.screen[data-screen="home"] .gauge-end{
+  opacity:.80;
+}
+.screen[data-screen="home"] .gauge-dot-ring{
+  stroke-width:3.15;
+}
+.screen[data-screen="home"] .orb-button{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:14%;
+  transform:translateX(-50%);
+  width:77%;
+  height:82%;
+  margin:0;
+  padding:0;
+  display:block;
+  overflow:visible;
+  background:transparent;
+  border-radius:0;
+}
+.screen[data-screen="home"] .orb-image{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  width:auto;
+  aspect-ratio:auto;
+  background-image:var(--orb-image);
+  background-size:contain;
+  background-position:center bottom;
+  background-repeat:no-repeat;
+  border-radius:0;
+  filter:none;
+  -webkit-mask-image:
+    radial-gradient(ellipse 43% 42% at 50% 37%,#000 0 90%,transparent 100%),
+    radial-gradient(ellipse 49% 23% at 50% 78%,#000 0 89%,transparent 100%),
+    radial-gradient(ellipse 49% 10% at 48% 91%,rgba(0,0,0,.48) 0 62%,transparent 100%);
+  -webkit-mask-repeat:no-repeat;
+  -webkit-mask-composite:source-over;
+  mask-image:
+    radial-gradient(ellipse 43% 42% at 50% 37%,#000 0 90%,transparent 100%),
+    radial-gradient(ellipse 49% 23% at 50% 78%,#000 0 89%,transparent 100%),
+    radial-gradient(ellipse 49% 10% at 48% 91%,rgba(0,0,0,.48) 0 62%,transparent 100%);
+  mask-repeat:no-repeat;
+}
+.screen[data-screen="home"] .orb-glow{
+  left:50%;
+  top:59%;
+  width:34%;
+  filter:blur(13px);
+}
+.screen[data-screen="home"] .orb-button:active .orb-image{
+  transform:scale(.987);
+}
+
+.bottom-nav{
+  left:50%;
+  bottom:calc(10px + env(safe-area-inset-bottom));
+  width:min(calc(100% - 32px),428px);
+  height:72px;
+  padding:0 18px;
+  border-radius:28px;
+  background:var(--nav-fidelity);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 7px 22px rgba(63,54,44,.04);
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+}
+.nav-btn{height:58px}
+.nav-btn svg{
+  width:23px;
+  height:23px;
+  stroke-width:1.55;
+}
+.nav-btn.active:after{
+  bottom:0;
+  width:4px;
+  height:4px;
+}
+
+.menu-pop{width:126px;padding:8px}
+.menu-pop.open{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.menu-action{
+  height:48px;
+  display:grid;
+  place-items:center;
+  padding:0;
+}
+.menu-action span{display:none}
+
+@media(max-height:690px){
+  .screen[data-screen="home"] .balance-label{top:23.2%}
+  .screen[data-screen="home"] .balance-row{top:27.3%}
+  .screen[data-screen="home"] .orb-stage{
+    top:36.4%;
+    height:47dvh;
+    width:min(88%,360px);
+  }
+}
