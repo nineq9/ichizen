@@ -5,224 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#f3efe8">
 <title>ICHIZEN</title>
-<link rel="preload" as="image" href="assets/orb-light-hq.png?v=20260818-levels">
-<link rel="preload" as="image" href="assets/orb-dark-hq.png?v=20260818-levels">
+<link rel="preload" as="image" href="assets/orb-light.webp?v=stable-glow-2">
+<link rel="preload" as="image" href="assets/orb-dark.webp?v=stable-glow-2">
 <style>
-:root{
-  --bg:#f3efe8;
-  --text:#302c29;
-  --muted:#918a82;
-  --glass:rgba(255,255,255,.38);
-  --nav:rgba(252,250,247,.48);
-  --shadow:rgba(70,59,48,.07);
-}
-html.dark{
-  --bg:#2f2c29;
-  --text:#eee8df;
-  --muted:#aaa198;
-  --glass:rgba(255,255,255,.065);
-  --nav:rgba(63,59,55,.48);
-  --shadow:rgba(31,27,24,.22);
-}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans",system-ui,sans-serif}
-button{font:inherit;color:inherit;border:0;background:none;padding:0}
-#app{position:relative;width:100%;max-width:460px;height:100dvh;margin:auto;background:radial-gradient(circle at 50% 58%,rgba(186,143,92,.035),transparent 40%),var(--bg);overflow:hidden;transition:background .8s ease,color .8s ease}
-.brand{position:absolute;left:27px;top:26px;font-size:20px;letter-spacing:.14em;font-weight:400;line-height:1;color:var(--text)}
-.menu{position:absolute;right:27px;top:18px;width:43px;height:43px;border-radius:50%;background:var(--glass);display:grid;place-items:center;box-shadow:0 7px 18px var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .8s ease,box-shadow .8s ease}
-.menu i,.menu i:before,.menu i:after{display:block;width:17px;height:1.25px;background:currentColor;border-radius:2px;content:"";position:absolute}
-.menu i:before{transform:translateY(-4.8px)}
-.menu i:after{transform:translateY(4.8px)}
-.balance-label{position:absolute;left:50%;top:18.2%;transform:translateX(-50%);font-size:14px;font-weight:500;white-space:nowrap;color:var(--text)}
-.balance-row{position:absolute;left:50%;top:22.3%;transform:translateX(-50%);display:flex;align-items:center;gap:17px}
-.balance{font-size:60px;line-height:.9;font-weight:300;letter-spacing:-.055em;font-variant-numeric:tabular-nums;color:var(--text)}
-.add{width:44px;height:44px;border-radius:50%;background:var(--glass);position:relative;box-shadow:0 7px 18px var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .8s ease,box-shadow .8s ease,transform .2s ease}
-.add:active{transform:scale(.97)}
-.add:before,.add:after{content:"";position:absolute;left:50%;top:50%;width:18px;height:1.15px;background:currentColor;transform:translate(-50%,-50%);border-radius:2px}
-.add:after{transform:translate(-50%,-50%) rotate(90deg)}
-.stage{position:absolute;left:50%;top:31%;transform:translateX(-50%);width:min(82vw,326px);height:min(48dvh,356px)}
-.orb-btn{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:transform .18s ease}
-.orb-btn:active{transform:scale(.992)}
-.orb-stack{position:absolute;inset:0;pointer-events:none}
-.orb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;user-select:none;-webkit-user-drag:none;image-rendering:auto;opacity:0;transition:opacity 1.8s cubic-bezier(.22,.7,.2,1);will-change:opacity}
-.orb-img.visible{opacity:1}
-.orb-img.light{display:block}
-.orb-img.dark{display:block}
-html:not(.dark) .orb-img.dark{opacity:0!important}
-html.dark .orb-img.light{opacity:0!important}
-.orb-img.level-1{filter:brightness(.76) contrast(1.06) saturate(.82)}
-.orb-img.level-2{filter:brightness(.88) contrast(1.07) saturate(.87)}
-.orb-img.level-3{filter:brightness(.99) contrast(1.08) saturate(.92)}
-.orb-img.level-4{filter:brightness(1.08) contrast(1.07) saturate(.96)}
-.orb-img.level-5{filter:brightness(1.15) contrast(1.06) saturate(1)}
-html.dark .orb-img.level-1{filter:brightness(.58) contrast(1.14) saturate(.72) sepia(.12)}
-html.dark .orb-img.level-2{filter:brightness(.68) contrast(1.15) saturate(.76) sepia(.14)}
-html.dark .orb-img.level-3{filter:brightness(.79) contrast(1.16) saturate(.82) sepia(.16)}
-html.dark .orb-img.level-4{filter:brightness(.91) contrast(1.15) saturate(.88) sepia(.18)}
-html.dark .orb-img.level-5{filter:brightness(1.03) contrast(1.14) saturate(.94) sepia(.20)}
-.orb-shadow{position:absolute;left:50%;bottom:2.5%;width:64%;height:7%;transform:translateX(-50%);border-radius:50%;background:rgba(82,67,53,.09);filter:blur(13px);z-index:-1;transition:background .8s ease}
-html.dark .orb-shadow{background:rgba(42,35,30,.32)}
-.nav{position:absolute;left:24px;right:24px;bottom:max(13px,env(safe-area-inset-bottom));height:58px;border-radius:25px;background:var(--nav);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 14px;backdrop-filter:blur(23px);-webkit-backdrop-filter:blur(23px);border:1px solid rgba(255,255,255,.055);box-shadow:0 6px 20px var(--shadow);transition:background .8s ease,box-shadow .8s ease}
-.nav button{height:47px;display:grid;place-items:center;position:relative;color:var(--muted)}
-.nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.32;stroke-linecap:round;stroke-linejoin:round}
-.nav button.active{color:var(--text)}
-.nav button.active .fill{fill:currentColor}
-.nav button.active:after{content:"";position:absolute;bottom:0;width:4px;height:4px;border-radius:50%;background:currentColor}
-.panel{position:absolute;inset:0;display:none;background:var(--bg);padding:28px 26px 100px;z-index:10;transition:background .8s ease,color .8s ease}
-.panel.open{display:block}
-.panel h2{font-size:24px;font-weight:550;margin:16px 0 24px}
-.close{position:absolute;right:24px;top:20px;font-size:30px;font-weight:200}
-.sheetback{position:absolute;inset:0;display:none;align-items:flex-end;background:rgba(52,45,39,.22);z-index:30}
-.sheetback.open{display:flex}
-.sheet{width:100%;background:var(--bg);border-radius:28px 28px 0 0;padding:16px 22px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 50px var(--shadow)}
-.grab{width:36px;height:4px;border-radius:3px;background:rgba(120,110,100,.25);margin:0 auto 18px}
-.sheet h3{font-size:19px;margin:0 0 18px}
-textarea{width:100%;min-height:120px;border:1px solid rgba(120,110,100,.15);border-radius:18px;background:rgba(255,255,255,.16);color:inherit;padding:15px;font:inherit;resize:none;outline:none}
-.primary{width:100%;height:50px;border-radius:999px;background:var(--text);color:var(--bg);margin-top:14px;font-weight:600}
-.debug-note{font-size:12px;color:var(--muted);line-height:1.7;margin-top:18px}
-@media(max-height:720px){
-  .brand{top:22px}.menu{top:14px}.balance-label{top:17%}.balance-row{top:21.3%}.stage{top:29.2%;height:min(47dvh,330px);width:min(80vw,314px)}.nav{height:56px;bottom:9px;left:23px;right:23px}
-}
-@media(prefers-reduced-motion:reduce){.orb-img{transition-duration:.01ms!important}}
+:root{--bg:#f3efe8;--text:#38332f;--muted:#948c83;--glass:rgba(255,255,255,.38);--nav:rgba(252,250,247,.48);--shadow:rgba(70,59,48,.06)}
+html.dark{--bg:#2f2c29;--text:#eee8df;--muted:#ada49b;--glass:rgba(255,255,255,.065);--nav:rgba(63,59,55,.46);--shadow:rgba(31,27,24,.22)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans",system-ui,sans-serif}button,textarea{font:inherit;color:inherit;border:0;background:none;padding:0}
+#app{position:relative;width:100%;max-width:460px;height:100dvh;margin:auto;background:radial-gradient(circle at 50% 56%,rgba(193,149,98,.035),transparent 40%),var(--bg);overflow:hidden;transition:background .8s ease,color .8s ease}.brand{position:absolute;left:27px;top:26px;font-size:20px;letter-spacing:.105em;font-weight:400;line-height:1;color:var(--text)}
+.menu{position:absolute;right:27px;top:18px;width:43px;height:43px;border-radius:50%;background:var(--glass);display:grid;place-items:center;box-shadow:0 7px 18px var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .8s ease,box-shadow .8s ease,transform .18s ease}.menu:active,.add:active,.orb-btn:active{transform:scale(.985)}.menu i,.menu i:before,.menu i:after{display:block;width:17px;height:1.25px;background:currentColor;border-radius:2px;content:"";position:absolute}.menu i:before{transform:translateY(-4.8px)}.menu i:after{transform:translateY(4.8px)}
+.balance-label{position:absolute;left:50%;top:18.2%;transform:translateX(-50%);font-size:14px;font-weight:500;white-space:nowrap;color:var(--text)}.balance-row{position:absolute;left:50%;top:22.3%;transform:translateX(-50%);display:flex;align-items:center;gap:17px}.balance{font-size:60px;line-height:.9;font-weight:300;letter-spacing:-.055em;font-variant-numeric:tabular-nums;color:var(--text)}
+.add{width:44px;height:44px;border-radius:50%;background:var(--glass);position:relative;box-shadow:0 7px 18px var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .8s ease,box-shadow .8s ease,transform .18s ease}.add:before,.add:after{content:"";position:absolute;left:50%;top:50%;width:18px;height:1.15px;background:currentColor;transform:translate(-50%,-50%);border-radius:2px}.add:after{transform:translate(-50%,-50%) rotate(90deg)}
+.stage{position:absolute;left:50%;top:30.2%;transform:translateX(-50%);width:min(83vw,334px);height:min(48dvh,360px)}.orb-btn{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:transform .18s ease}.orb-shadow{position:absolute;left:50%;bottom:3%;width:62%;height:7%;transform:translateX(-50%);border-radius:50%;background:rgba(82,67,53,.085);filter:blur(13px);z-index:-1;transition:background .8s ease}html.dark .orb-shadow{background:rgba(20,17,15,.32)}
+.base-stack,.glow-stack{position:absolute;inset:0;pointer-events:none}.base-layer,.glow-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;transition:opacity 1.8s cubic-bezier(.22,.7,.2,1);will-change:opacity;user-select:none;-webkit-user-drag:none}.base-layer{filter:brightness(var(--orb-brightness,.98)) contrast(1.05) saturate(.92)}html.dark .base-layer{filter:brightness(var(--orb-brightness,.82)) contrast(1.08) saturate(.84)}.base-layer.visible,.glow-layer.visible{opacity:1}.glow-layer{z-index:3;mix-blend-mode:screen;object-fit:contain}
+.stage.level-1{--orb-brightness:.76}.stage.level-2{--orb-brightness:.86}.stage.level-3{--orb-brightness:.98}.stage.level-4{--orb-brightness:1.04}.stage.level-5{--orb-brightness:1.09}html.dark .stage.level-1{--orb-brightness:.60}html.dark .stage.level-2{--orb-brightness:.70}html.dark .stage.level-3{--orb-brightness:.82}html.dark .stage.level-4{--orb-brightness:.91}html.dark .stage.level-5{--orb-brightness:.98}
+.nav{position:absolute;left:24px;right:24px;bottom:max(13px,env(safe-area-inset-bottom));height:58px;border-radius:25px;background:var(--nav);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 14px;backdrop-filter:blur(23px);-webkit-backdrop-filter:blur(23px);border:1px solid rgba(255,255,255,.05);box-shadow:0 6px 20px var(--shadow);transition:background .8s ease,box-shadow .8s ease}.nav button{height:47px;display:grid;place-items:center;position:relative;color:var(--muted)}.nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.32;stroke-linecap:round;stroke-linejoin:round}.nav button.active{color:var(--text)}.nav button.active .fill{fill:currentColor}.nav button.active:after{content:"";position:absolute;bottom:0;width:4px;height:4px;border-radius:50%;background:currentColor}
+.panel{position:absolute;inset:0;display:none;background:var(--bg);padding:28px 26px 100px;z-index:10;transition:background .8s ease,color .8s ease}.panel.open{display:block}.panel h2{font-size:24px;font-weight:550;margin:16px 0 24px}.close{position:absolute;right:24px;top:20px;font-size:30px;font-weight:200}.sheetback{position:absolute;inset:0;display:none;align-items:flex-end;background:rgba(52,45,39,.22);z-index:30}.sheetback.open{display:flex}.sheet{width:100%;background:var(--bg);border-radius:28px 28px 0 0;padding:16px 22px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 50px var(--shadow)}.grab{width:36px;height:4px;border-radius:3px;background:rgba(120,110,100,.25);margin:0 auto 18px}.sheet h3{font-size:19px;margin:0 0 18px}textarea{width:100%;min-height:120px;border:1px solid rgba(120,110,100,.15);border-radius:18px;background:rgba(255,255,255,.16);color:inherit;padding:15px;resize:none;outline:none}.primary{width:100%;height:50px;border-radius:999px;background:var(--text);color:var(--bg);margin-top:14px;font-weight:600}.debug-note{font-size:12px;color:var(--muted);line-height:1.7;margin-top:18px}
+@media(max-height:720px){.brand{top:22px}.menu{top:14px}.balance-label{top:17%}.balance-row{top:21.3%}.stage{top:29.2%;height:min(47dvh,330px);width:min(81vw,318px)}.nav{height:56px;bottom:9px;left:23px;right:23px}}@media(prefers-reduced-motion:reduce){.base-layer,.glow-layer{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <div id="app">
-  <div class="brand">ICHIZEN</div>
-  <button class="menu" id="menu" aria-label="メニュー"><i></i></button>
-  <div class="balance-label">現在の徳</div>
-  <div class="balance-row"><div class="balance" id="balance">127</div><button class="add" id="add" aria-label="徳を積む"></button></div>
-
-  <div class="stage">
-    <button class="orb-btn" id="orb" aria-label="授かったものを記録">
-      <span class="orb-shadow" aria-hidden="true"></span>
-      <span class="orb-stack" aria-hidden="true">
-        <img class="orb-img light level-1" data-theme="light" data-level="1" alt="" src="assets/orb-light-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img light level-2" data-theme="light" data-level="2" alt="" src="assets/orb-light-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img light level-3" data-theme="light" data-level="3" alt="" src="assets/orb-light-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img light level-4" data-theme="light" data-level="4" alt="" src="assets/orb-light-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img light level-5" data-theme="light" data-level="5" alt="" src="assets/orb-light-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img dark level-1" data-theme="dark" data-level="1" alt="" src="assets/orb-dark-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img dark level-2" data-theme="dark" data-level="2" alt="" src="assets/orb-dark-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img dark level-3" data-theme="dark" data-level="3" alt="" src="assets/orb-dark-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img dark level-4" data-theme="dark" data-level="4" alt="" src="assets/orb-dark-hq.png?v=20260818-levels" loading="eager" decoding="async">
-        <img class="orb-img dark level-5" data-theme="dark" data-level="5" alt="" src="assets/orb-dark-hq.png?v=20260818-levels" loading="eager" decoding="async">
-      </span>
-    </button>
-  </div>
-
-  <nav class="nav" aria-label="メインナビゲーション">
-    <button class="active" data-panel="" aria-label="ホーム"><svg viewBox="0 0 24 24"><path class="fill" d="M3.5 10.5 12 3l8.5 7.5V21h-6v-6h-5v6h-6z"/></svg></button>
-    <button data-panel="history" aria-label="履歴"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></button>
-    <button data-panel="received" aria-label="もらったもの"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
-    <button data-panel="reflect" aria-label="振り返り"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 7.4 5M12 7v5l3 2"/><path d="M16 3h5v5"/></svg></button>
-    <button data-panel="settings" aria-label="マイページ"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></button>
-  </nav>
-
-  <section class="panel" id="panel"><button class="close" id="closePanel">×</button><h2 id="panelTitle"></h2><div id="panelBody"></div></section>
-  <div class="sheetback" id="sheetback"><div class="sheet"><div class="grab"></div><h3 id="sheetTitle"></h3><textarea id="entry"></textarea><button class="primary" id="save">記録する</button></div></div>
+<div class="brand">ICHIZEN</div><button class="menu" id="menu" aria-label="メニュー"><i></i></button><div class="balance-label">現在の徳</div><div class="balance-row"><div class="balance" id="balance">127</div><button class="add" id="add" aria-label="徳を積む"></button></div>
+<div class="stage level-3" id="stage"><button class="orb-btn" id="orb" aria-label="授かったものを記録"><span class="orb-shadow" aria-hidden="true"></span><span class="base-stack" aria-hidden="true"><img id="baseA" class="base-layer visible" src="assets/orb-light.webp?v=stable-glow-2" alt="" loading="eager" decoding="sync"><img id="baseB" class="base-layer" alt="" loading="eager" decoding="async"></span><span class="glow-stack" aria-hidden="true"><img id="glowA" class="glow-layer" alt=""><img id="glowB" class="glow-layer" alt=""></span></button></div>
+<nav class="nav" aria-label="メインナビゲーション"><button class="active" data-panel="" aria-label="ホーム"><svg viewBox="0 0 24 24"><path class="fill" d="M3.5 10.5 12 3l8.5 7.5V21h-6v-6h-5v6h-6z"/></svg></button><button data-panel="history" aria-label="履歴"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></button><button data-panel="received" aria-label="もらったもの"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button data-panel="reflect" aria-label="振り返り"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 7.4 5M12 7v5l3 2"/><path d="M16 3h5v5"/></svg></button><button data-panel="settings" aria-label="マイページ"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></button></nav>
+<section class="panel" id="panel"><button class="close" id="closePanel">×</button><h2 id="panelTitle"></h2><div id="panelBody"></div></section><div class="sheetback" id="sheetback"><div class="sheet"><div class="grab"></div><h3 id="sheetTitle"></h3><textarea id="entry"></textarea><button class="primary" id="save">記録する</button></div></div>
 </div>
 <script>
-const KEY='ichizen-state-v4';
-let s;
-try{s=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-s=s||{balance:127,theme:'auto',entries:[]};
-const $=q=>document.querySelector(q);
-const $$=q=>[...document.querySelectorAll(q)];
-
-function resolvedTheme(){
-  const h=new Date().getHours();
-  return s.theme==='dark'||(s.theme==='auto'&&(h>=19||h<7))?'dark':'light';
-}
-function levelFor(balance){
-  if(balance<30)return 1;
-  if(balance<80)return 2;
-  if(balance<150)return 3;
-  if(balance<300)return 4;
-  return 5;
-}
-function theme(){
-  const mode=resolvedTheme();
-  document.documentElement.classList.toggle('dark',mode==='dark');
-  document.querySelector('meta[name=theme-color]').content=mode==='dark'?'#2f2c29':'#f3efe8';
-  renderOrb();
-}
-function renderOrb(){
-  const mode=resolvedTheme();
-  const level=levelFor(Math.max(0,s.balance));
-  $$('.orb-img').forEach(img=>{
-    const active=img.dataset.theme===mode&&Number(img.dataset.level)===level;
-    img.classList.toggle('visible',active);
-  });
-}
-function update(){
-  $('#balance').textContent=s.balance;
-  renderOrb();
-}
-function persist(){localStorage.setItem(KEY,JSON.stringify(s))}
-
-let type='good';
-function openSheet(t){
-  type=t;
-  $('#sheetTitle').textContent=t==='good'?'徳を積む':'授かったものを記録';
-  $('#entry').value='';
-  $('#entry').placeholder=t==='good'?'今日した善いこと':'今日、授かった嬉しいこと';
-  $('#sheetback').classList.add('open');
-}
-$('#add').onclick=()=>openSheet('good');
-$('#orb').onclick=()=>openSheet('gift');
-$('#sheetback').onclick=e=>{if(e.target===$('#sheetback'))$('#sheetback').classList.remove('open')};
-$('#save').onclick=()=>{
-  const text=$('#entry').value.trim();
-  if(!text)return;
-  const score=type==='good'?3:1;
-  s.balance=Math.max(0,s.balance+(type==='good'?score:-score));
-  s.entries.push({type,text,score,date:Date.now()});
-  persist();
-  update();
-  $('#sheetback').classList.remove('open');
-};
-
-window.addVirtue=(amount=30)=>{s.balance=Math.max(0,s.balance+(Number(amount)||0));persist();update();return s.balance};
-window.useVirtue=(amount=30)=>{s.balance=Math.max(0,s.balance-(Number(amount)||0));persist();update();return s.balance};
-window.setVirtue=(value=127)=>{s.balance=Math.max(0,Number(value)||0);persist();update();return s.balance};
-window.setIchizenTheme=(mode='auto')=>{if(['light','auto','dark'].includes(mode)){s.theme=mode;persist();theme()}return s.theme};
-
-const titles={history:'履歴',received:'もらったもの',reflect:'振り返り',settings:'設定'};
-function panelHtml(p){
-  const entries=[...s.entries].reverse();
-  if(p==='history')return entries.length?entries.map(e=>`<p>${e.type==='good'?'+':'−'}${e.score}　${escapeHtml(e.text)}</p>`).join(''):'<p>まだ記録がありません。</p>';
-  if(p==='received'){
-    const gifts=entries.filter(e=>e.type==='gift');
-    return gifts.length?gifts.map(e=>`<p>${escapeHtml(e.text)}</p>`).join(''):'<p>まだ記録がありません。</p>';
-  }
-  if(p==='reflect')return `<p>現在の徳　${s.balance}</p>`;
-  return `<button id="toggleTheme" class="primary">Light / Auto / Dark</button><p class="debug-note">開発確認：console で addVirtue(30) / useVirtue(30) / setVirtue(300) が使えます。</p>`;
-}
-function escapeHtml(v=''){return v.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{
-  const p=b.dataset.panel;
-  if(!p)return;
-  $('#panelTitle').textContent=titles[p];
-  $('#panelBody').innerHTML=panelHtml(p);
-  $('#panel').classList.add('open');
-  bindThemeToggle();
-});
-function bindThemeToggle(){
-  const t=$('#toggleTheme');
-  if(t)t.onclick=()=>{s.theme=s.theme==='auto'?'dark':s.theme==='dark'?'light':'auto';persist();theme()};
-}
-$('#closePanel').onclick=()=>$('#panel').classList.remove('open');
-$('#menu').onclick=()=>{
-  $('#panelTitle').textContent='設定';
-  $('#panelBody').innerHTML=panelHtml('settings');
-  $('#panel').classList.add('open');
-  bindThemeToggle();
-};
-
-theme();
-update();
-setInterval(()=>{if(s.theme==='auto')theme()},60000);
+const KEY='ichizen-state-v4';let s;try{s=JSON.parse(localStorage.getItem(KEY))}catch(e){}s=s||{balance:127,theme:'auto',entries:[]};const $=q=>document.querySelector(q);let baseFront='A',glowFront='A',currentBase='',currentGlow='';
+function persist(){localStorage.setItem(KEY,JSON.stringify(s))}function resolvedTheme(){const h=new Date().getHours();return s.theme==='dark'||(s.theme==='auto'&&(h>=19||h<7))?'dark':'light'}function levelFor(v){if(v<30)return 1;if(v<80)return 2;if(v<150)return 3;if(v<300)return 4;return 5}function theme(){const mode=resolvedTheme();document.documentElement.classList.toggle('dark',mode==='dark');document.querySelector('meta[name=theme-color]').content=mode==='dark'?'#2f2c29':'#f3efe8';renderOrb()}
+function safeCrossfade(kind,src){const isBase=kind==='base',front=isBase?baseFront:glowFront,current=isBase?currentBase:currentGlow;if(src===current)return;const incoming=$(isBase?(front==='A'?'#baseB':'#baseA'):(front==='A'?'#glowB':'#glowA')),outgoing=$(isBase?(front==='A'?'#baseA':'#baseB'):(front==='A'?'#glowA':'#glowB'));const pre=new Image();pre.onload=()=>{incoming.src=src;incoming.style.display='block';requestAnimationFrame(()=>requestAnimationFrame(()=>{incoming.classList.add('visible');outgoing.classList.remove('visible');if(isBase){baseFront=front==='A'?'B':'A';currentBase=src}else{glowFront=front==='A'?'B':'A';currentGlow=src}}))};pre.onerror=()=>console.warn('ICHIZEN asset failed',src);pre.src=src}
+function renderOrb(){const mode=resolvedTheme(),level=levelFor(Math.max(0,s.balance));$('#stage').className=`stage level-${level}`;safeCrossfade('base',`assets/orb-${mode}.webp?v=stable-glow-2`);safeCrossfade('glow',`assets/virtue/${mode}-${level}.svg?v=stable-glow-2`)}function update(){$('#balance').textContent=s.balance;renderOrb()}
+let type='good';function openSheet(t){type=t;$('#sheetTitle').textContent=t==='good'?'徳を積む':'授かったものを記録';$('#entry').value='';$('#entry').placeholder=t==='good'?'今日した善いこと':'今日、授かった嬉しいこと';$('#sheetback').classList.add('open')}$('#add').onclick=()=>openSheet('good');$('#orb').onclick=()=>openSheet('gift');$('#sheetback').onclick=e=>{if(e.target===$('#sheetback'))$('#sheetback').classList.remove('open')};$('#save').onclick=()=>{const text=$('#entry').value.trim();if(!text)return;const score=type==='good'?3:1;s.balance=Math.max(0,s.balance+(type==='good'?score:-score));s.entries.push({type,text,score,date:Date.now()});persist();update();$('#sheetback').classList.remove('open')};
+window.addVirtue=(amount=30)=>{s.balance=Math.max(0,s.balance+(Number(amount)||0));persist();update();return s.balance};window.useVirtue=(amount=30)=>{s.balance=Math.max(0,s.balance-(Number(amount)||0));persist();update();return s.balance};window.setVirtue=(value=127)=>{s.balance=Math.max(0,Number(value)||0);persist();update();return s.balance};window.setIchizenTheme=(mode='auto')=>{if(['light','auto','dark'].includes(mode)){s.theme=mode;persist();theme()}return s.theme};
+const titles={history:'履歴',received:'もらったもの',reflect:'振り返り',settings:'設定'};function esc(v=''){return v.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function panelHtml(p){const entries=[...s.entries].reverse();if(p==='history')return entries.length?entries.map(e=>`<p>${e.type==='good'?'+':'−'}${e.score}　${esc(e.text)}</p>`).join(''):'<p>まだ記録がありません。</p>';if(p==='received'){const gifts=entries.filter(e=>e.type==='gift');return gifts.length?gifts.map(e=>`<p>${esc(e.text)}</p>`).join(''):'<p>まだ記録がありません。</p>'}if(p==='reflect')return `<p>現在の徳　${s.balance}</p>`;return '<button id="toggleTheme" class="primary">Light / Auto / Dark</button><p class="debug-note">開発確認：addVirtue(30) / useVirtue(30) / setVirtue(300)</p>'}function bindThemeToggle(){const t=$('#toggleTheme');if(t)t.onclick=()=>{s.theme=s.theme==='auto'?'dark':s.theme==='dark'?'light':'auto';persist();theme()}}document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{const p=b.dataset.panel;if(!p)return;$('#panelTitle').textContent=titles[p];$('#panelBody').innerHTML=panelHtml(p);$('#panel').classList.add('open');bindThemeToggle()});$('#closePanel').onclick=()=>$('#panel').classList.remove('open');$('#menu').onclick=()=>{$('#panelTitle').textContent='設定';$('#panelBody').innerHTML=panelHtml('settings');$('#panel').classList.add('open');bindThemeToggle()};
+const qs=new URLSearchParams(location.search);if(qs.has('virtue'))s.balance=Math.max(0,Number(qs.get('virtue'))||0);if(['light','dark','auto'].includes(qs.get('theme')))s.theme=qs.get('theme');persist();currentBase='assets/orb-light.webp?v=stable-glow-2';theme();update();setInterval(theme,60000);
 </script>
 </body>
 </html>
