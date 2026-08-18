@@ -15,16 +15,19 @@ html.theme-dark .screen[data-screen="home"] .icon-btn{background:rgba(255,255,25
 .screen[data-screen="home"] .add-btn{width:45px;height:45px;background:rgba(255,255,255,.43);box-shadow:0 7px 18px rgba(74,62,49,.035)}
 html.theme-dark .screen[data-screen="home"] .add-btn{background:rgba(255,255,255,.065);box-shadow:none}
 .screen[data-screen="home"] .add-btn:before,.screen[data-screen="home"] .add-btn:after{width:18px;height:1.25px}
-/* The approved composition: one compact arc wrapping the transparent orb asset. */
 .screen[data-screen="home"] .orb-stage{position:absolute;z-index:2;top:28.7%;left:50%;transform:translateX(-50%);width:min(88%,360px);height:min(42dvh,350px);max-width:none;aspect-ratio:auto;margin:0;display:block}
 .screen[data-screen="home"] .gauge{position:absolute;z-index:1;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .screen[data-screen="home"] .gauge-track{fill:none;stroke:url(#arcGradient);stroke-width:1.18;stroke-linecap:round;stroke-dasharray:64 36;transform:rotate(155deg);transform-origin:50% 51.25%;opacity:.82}
 .screen[data-screen="home"] .gauge-end{opacity:.76}
 .screen[data-screen="home"] .gauge-dot-ring{stroke-width:3.0}
 .screen[data-screen="home"] .orb-button{position:absolute;z-index:3;left:50%;top:15.5%;transform:translateX(-50%);width:79%;height:83%;margin:0;padding:0;display:block;overflow:visible;background:transparent!important;border-radius:0!important}
-.screen[data-screen="home"] .orb-image{position:absolute;inset:0;width:100%;height:100%;z-index:2;background-image:var(--orb-image)!important;background-size:contain!important;background-position:center bottom!important;background-repeat:no-repeat!important;border-radius:0!important;filter:none!important;mix-blend-mode:normal!important}
+.screen[data-screen="home"] .orb-image{display:none!important}
+.screen[data-screen="home"] .orb-picture{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:2;pointer-events:none;background:transparent!important}
+.screen[data-screen="home"] .orb-image-direct{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;background:transparent!important;border:0;border-radius:0;filter:none!important;mix-blend-mode:normal!important;-webkit-user-select:none;user-select:none;transition:opacity .5s ease,transform .22s ease}
 .screen[data-screen="home"] .orb-glow{left:50%;top:59%;width:28%;filter:blur(12px);opacity:calc(var(--glow-opacity,.5)*.72)}
-.screen[data-screen="home"] .orb-button:active .orb-image{transform:scale(.99)}
+.screen[data-screen="home"] .orb-button:active .orb-image-direct{transform:scale(.99)}
+html.theme-dark .screen[data-screen="home"] .orb-image-direct{content:url('assets/orb-dark.webp?v=20260818e')}
+html.theme-light .screen[data-screen="home"] .orb-image-direct{content:url('assets/orb-light.webp?v=20260818e')}
 .bottom-nav{left:50%;bottom:calc(13px + env(safe-area-inset-bottom));width:min(calc(100% - 34px),426px);height:68px;padding:0 18px;border-radius:27px;background:var(--nav-lock);border:1px solid rgba(255,255,255,.07);box-shadow:0 7px 20px rgba(62,53,43,.025);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
 .nav-btn{height:54px}.nav-btn svg{width:22px;height:22px;stroke-width:1.5}.nav-btn.active:after{bottom:0;width:4px;height:4px}
 .menu-pop{width:126px;padding:8px}.menu-pop.open{display:grid;grid-template-columns:1fr 1fr;gap:4px}.menu-action{height:48px;display:grid;place-items:center;padding:0}.menu-action span{display:none}
