@@ -5,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#f4f0ea">
 <title>ICHIZEN</title>
+<link rel="preload" as="image" href="assets/orb-light-hq.png?v=20260818-hq">
+<link rel="preload" as="image" href="assets/orb-dark-hq.png?v=20260818-hq">
 <style>
 :root {
   --bg:#f4f0ea; --text:#1d1b18; --muted:#918a80; --arc:#d6c3aa; --arcDone:#8f7e68;
-  --glass:rgba(255,255,255,.44); --nav:rgba(252,250,247,.66); --glow:255,196,100;
+  --glass:rgba(255,255,255,.42); --nav:rgba(252,250,247,.58); --glow:255,196,100;
 }
 html.dark {
   --bg:#2c2a28; --text:#f3efe7; --muted:#aaa198; --arc:#8f7b63; --arcDone:#d1b184;
-  --glass:rgba(255,255,255,.07); --nav:rgba(61,58,54,.58); --glow:255,178,76;
+  --glass:rgba(255,255,255,.065); --nav:rgba(61,58,54,.52); --glow:255,178,76;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans",system-ui,sans-serif}
@@ -28,31 +30,31 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0}
 .add{width:46px;height:46px;border-radius:50%;background:var(--glass);position:relative;box-shadow:0 8px 20px rgba(45,38,30,.04)}
 .add:before,.add:after{content:"";position:absolute;left:50%;top:50%;width:19px;height:1.25px;background:currentColor;transform:translate(-50%,-50%);border-radius:2px}
 .add:after{transform:translate(-50%,-50%) rotate(90deg)}
-.stage{position:absolute;left:50%;top:28%;transform:translateX(-50%);width:min(91vw,360px);height:min(47dvh,350px)}
+.stage{position:absolute;left:50%;top:28.6%;transform:translateX(-50%);width:min(88vw,350px);height:min(46dvh,342px)}
 .gauge{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:1}
-.arc-base{fill:none;stroke:var(--arc);stroke-width:1.25;stroke-linecap:round}
-.arc-progress{fill:none;stroke:var(--arcDone);stroke-width:1.5;stroke-linecap:round}
+.arc-base{fill:none;stroke:var(--arc);stroke-width:1.10;stroke-linecap:round}
+.arc-progress{fill:none;stroke:var(--arcDone);stroke-width:1.28;stroke-linecap:round}
 .end{fill:#a99a87}
 .ring{fill:var(--bg);stroke:white;stroke-width:3.5}
 .dot{fill:var(--text)}
-.orb-btn{position:absolute;z-index:2;left:50%;top:31%;transform:translateX(-50%);width:74%;height:72%}
-.orb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;user-select:none;-webkit-user-drag:none;transition:opacity .55s ease,transform .18s ease}
+.orb-btn{position:absolute;z-index:2;left:50%;top:25.5%;transform:translateX(-50%);width:86%;height:80%;overflow:visible}
+.orb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;user-select:none;-webkit-user-drag:none;image-rendering:auto;transition:opacity .55s ease,transform .18s ease;filter:none}
 .orb-dark{display:none} html.dark .orb-light{display:none} html.dark .orb-dark{display:block}
-.orb-btn:active .orb-img{transform:scale(.99)}
-.extra-glow{position:absolute;left:50%;top:58%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%) scale(var(--glowScale,.95));border-radius:50%;background:radial-gradient(circle,rgba(var(--glow),.45),rgba(var(--glow),.12) 40%,transparent 72%);filter:blur(13px);opacity:var(--glowOpacity,.42);z-index:-1}
-.nav{position:absolute;left:17px;right:17px;bottom:max(11px,env(safe-area-inset-bottom));height:68px;border-radius:28px;background:var(--nav);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 15px;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)}
-.nav button{height:54px;display:grid;place-items:center;position:relative;color:var(--muted)}
-.nav svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
+.orb-btn:before{content:"";position:absolute;left:50%;bottom:3%;width:68%;height:11%;transform:translateX(-50%);border-radius:50%;background:rgba(70,55,42,.14);filter:blur(15px);z-index:-2}html.dark .orb-btn:before{background:rgba(0,0,0,.36);filter:blur(17px)}.orb-btn:active .orb-img{transform:scale(.992)}
+.extra-glow{position:absolute;left:50%;top:59%;width:31%;aspect-ratio:1;transform:translate(-50%,-50%) scale(var(--glowScale,.95));border-radius:50%;background:radial-gradient(circle,rgba(var(--glow),.50),rgba(var(--glow),.13) 42%,transparent 72%);filter:blur(12px);opacity:var(--glowOpacity,.42);z-index:-1}html.dark .extra-glow{width:37%;background:radial-gradient(circle,rgba(var(--glow),.62),rgba(var(--glow),.17) 42%,transparent 72%);filter:blur(14px)}
+.nav{position:absolute;left:17px;right:17px;bottom:max(11px,env(safe-area-inset-bottom));height:64px;border-radius:27px;background:var(--nav);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 15px;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.07);box-shadow:0 8px 24px rgba(55,45,35,.025)}
+.nav button{height:51px;display:grid;place-items:center;position:relative;color:var(--muted)}
+.nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
 .nav button.active{color:var(--text)} .nav button.active .fill{fill:currentColor}
 .nav button.active:after{content:"";position:absolute;bottom:0;width:4px;height:4px;border-radius:50%;background:currentColor}
 .panel{position:absolute;inset:0;display:none;background:var(--bg);padding:28px 26px 100px;z-index:10}
-.panel.open{display:block}.panel h2{font-size:24px;font-weight:550;margin:16px 0 24px}.close{position:absolute;right:24px;top:20px;font-size:30px;font-weight:200}
+.panel.open{display:block} .panel h2{font-size:24px;font-weight:550;margin:16px 0 24px} .close{position:absolute;right:24px;top:20px;font-size:30px;font-weight:200}
 .sheetback{position:absolute;inset:0;display:none;align-items:flex-end;background:rgba(20,18,16,.18);z-index:30}.sheetback.open{display:flex}
 .sheet{width:100%;background:var(--bg);border-radius:28px 28px 0 0;padding:16px 22px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 50px rgba(0,0,0,.12)}
 .grab{width:36px;height:4px;border-radius:3px;background:rgba(120,110,100,.25);margin:0 auto 18px}
 .sheet h3{font-size:19px;margin:0 0 18px}textarea{width:100%;min-height:120px;border:1px solid rgba(120,110,100,.15);border-radius:18px;background:rgba(255,255,255,.16);color:inherit;padding:15px;font:inherit;resize:none;outline:none}
 .primary{width:100%;height:50px;border-radius:999px;background:var(--text);color:var(--bg);margin-top:14px;font-weight:600}
-@media(max-height:720px){.brand{top:22px}.menu{top:12px}.balance-label{top:16.4%}.balance-row{top:20.8%}.stage{top:27%;height:min(45dvh,318px)}.nav{height:64px;bottom:8px}}
+@media(max-height:720px){.brand{top:22px}.menu{top:12px}.balance-label{top:16.4%}.balance-row{top:20.8%}.stage{top:27.4%;height:min(44dvh,310px);width:min(86vw,338px)}.nav{height:61px;bottom:8px}}
 </style>
 </head>
 <body>
@@ -61,7 +63,7 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0}
 <div class="balance-label">現在の徳</div><div class="balance-row"><div class="balance" id="balance">127</div><button class="add" id="add" aria-label="徳を積む"></button></div>
 <div class="stage">
 <svg class="gauge" viewBox="0 0 400 400" aria-hidden="true"><path id="arcBase" class="arc-base" d="M42 286 C48 125 104 70 200 70 C296 70 352 125 358 286"/><path id="arcProgress" class="arc-progress" d="M42 286 C48 125 104 70 200 70 C296 70 352 125 358 286" pathLength="100"/><circle class="end" cx="42" cy="286" r="3.6"/><circle class="end" cx="358" cy="286" r="3.6"/><circle id="ring" class="ring" r="8"/><circle id="dot" class="dot" r="4"/></svg>
-<button class="orb-btn" id="orb" aria-label="授かったものを記録"><span class="extra-glow"></span><img class="orb-img orb-light" alt="" src="assets/orb-light.webp?v=20260818-final"><img class="orb-img orb-dark" alt="" src="assets/orb-dark.webp?v=20260818-final"></button>
+<button class="orb-btn" id="orb" aria-label="授かったものを記録"><span class="extra-glow"></span><img class="orb-img orb-light" alt="" src="assets/orb-light-hq.png?v=20260818-hq" loading="eager" decoding="async"><img class="orb-img orb-dark" alt="" src="assets/orb-dark-hq.png?v=20260818-hq" loading="eager" decoding="async"></button>
 </div>
 <nav class="nav" aria-label="メインナビゲーション"><button class="active" data-panel="" aria-label="ホーム"><svg viewBox="0 0 24 24"><path class="fill" d="M3.5 10.5 12 3l8.5 7.5V21h-6v-6h-5v6h-6z"/></svg></button><button data-panel="history" aria-label="履歴"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></button><button data-panel="received" aria-label="もらったもの"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button data-panel="reflect" aria-label="振り返り"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 7.4 5M12 7v5l3 2"/><path d="M16 3h5v5"/></svg></button><button data-panel="settings" aria-label="マイページ"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></button></nav>
 <section class="panel" id="panel"><button class="close" id="closePanel">×</button><h2 id="panelTitle"></h2><div id="panelBody"></div></section>
