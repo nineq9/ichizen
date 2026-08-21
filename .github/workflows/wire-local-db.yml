@@ -1,0 +1,42 @@
+name: Wire local-first DB
+
+on:
+  push:
+    paths:
+      - '.github/workflows/wire-local-db.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire IndexedDB mirror into current Safari preview
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          marker = '</div><script>\nconst KEY='
+          if 'local-first-db.js' not in s:
+              s = s.replace('</div><script>\nconst KEY=', '</div><script src="local-first-db.js?v=1"></script><script>\nconst KEY=', 1)
+          old = "function persist(){localStorage.setItem(KEY,JSON.stringify(s))}"
+          new = "function persist(){localStorage.setItem(KEY,JSON.stringify(s));window.ICHIZENLocalDB?.sync?.()}"
+          if old in s:
+              s = s.replace(old, new, 1)
+          p.write_text(s)
+          PY
+      - name: Verify wiring
+        run: |
+          grep -q 'local-first-db.js' index.html
+          grep -q 'ICHIZENLocalDB' index.html
+      - name: Commit
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Wire IndexedDB local-first storage into Safari preview'
+          git push
